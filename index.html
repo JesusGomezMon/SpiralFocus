@@ -104,10 +104,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Prata&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=Prata&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="preload"
+      as="image"
+      href="img/silla%20corte.jpeg"
+      fetchpriority="high"
+    />
     <link rel="icon" href="img/logo.ico" sizes="32x32" />
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
   </head>
@@ -115,9 +121,12 @@
     <header class="site-header">
       <a class="brand" href="#inicio">
         <img
-          src="img/logo%20con%20texto%20svg.svg"
+          src="img/logo-header.png"
           alt="SpiralFocus"
           class="brand-logo"
+          width="280"
+          height="48"
+          decoding="async"
         />
       </a>
       <nav class="site-nav" aria-label="Principal">
@@ -144,6 +153,10 @@
             class="hero-img"
             src="img/silla%20corte.jpeg"
             alt="Sesion de fotografia cinematografica SpiralFocus en Cancun"
+            width="1200"
+            height="1600"
+            decoding="async"
+            fetchpriority="high"
           />
         </div>
         <div class="hero-copy">
@@ -192,22 +205,22 @@
         </p>
         <div class="gallery-grid-6" id="gallery-grid">
           <button type="button" class="gallery-thumb" data-index="0">
-            <img src="img/barbershop.jpg" alt="Fotografia de barberia en Cancun" loading="lazy" />
+            <img src="img/barbershop.jpg" alt="Fotografia de barberia en Cancun" width="800" height="600" loading="lazy" decoding="async" />
           </button>
           <button type="button" class="gallery-thumb" data-index="1">
-            <img src="img/cafe%20de%20olla.jpg" alt="Fotografia gastronomica cafe de olla" loading="lazy" />
+            <img src="img/cafe%20de%20olla.jpg" alt="Fotografia gastronomica cafe de olla" width="800" height="600" loading="lazy" decoding="async" />
           </button>
           <button type="button" class="gallery-thumb" data-index="2">
-            <img src="img/carros.jpg" alt="Fotografia urbana nocturna de autos" loading="lazy" />
+            <img src="img/carros.jpg" alt="Fotografia urbana nocturna de autos" width="800" height="600" loading="lazy" decoding="async" />
           </button>
           <button type="button" class="gallery-thumb" data-index="3">
-            <img src="img/pareja.jpeg" alt="Fotografia de pareja en Cancun" loading="lazy" />
+            <img src="img/pareja.jpeg" alt="Fotografia de pareja en Cancun" width="800" height="600" loading="lazy" decoding="async" />
           </button>
           <button type="button" class="gallery-thumb" data-index="4">
-            <img src="img/moto.jpeg" alt="Fotografia lifestyle con motocicleta" loading="lazy" />
+            <img src="img/moto.jpeg" alt="Fotografia lifestyle con motocicleta" width="800" height="600" loading="lazy" decoding="async" />
           </button>
           <button type="button" class="gallery-thumb" data-index="5">
-            <img src="img/faro.jpg" alt="Faro en la costa de Cancun" loading="lazy" />
+            <img src="img/faro.jpg" alt="Faro en la costa de Cancun" width="800" height="600" loading="lazy" decoding="async" />
           </button>
         </div>
       </section>
@@ -369,11 +382,13 @@
         <div class="footer-row">
           <div class="footer-brand-block">
             <img
-              src="img/logo%20svg.svg"
+              src="img/logo-footer.png"
               alt="SpiralFocus"
               class="footer-logo"
               width="120"
               height="40"
+              loading="lazy"
+              decoding="async"
             />
             <p class="footer-location">Cancun, Quintana Roo</p>
           </div>
@@ -426,6 +441,6 @@
       </svg>
     </a>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </body>
 </html>

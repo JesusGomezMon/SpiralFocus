@@ -63,7 +63,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Prata&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=Prata&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -74,9 +74,12 @@
     <header class="site-header">
       <a class="brand" href="index.html">
         <img
-          src="img/logo%20con%20texto%20svg.svg"
+          src="img/logo-header.png"
           alt="SpiralFocus"
           class="brand-logo"
+          width="280"
+          height="48"
+          decoding="async"
         />
       </a>
       <nav class="site-nav" aria-label="Principal">
@@ -447,11 +450,13 @@
         <div class="footer-row">
           <div class="footer-brand-block">
             <img
-              src="img/logo%20svg.svg"
+              src="img/logo-footer.png"
               alt="SpiralFocus"
               class="footer-logo"
               width="120"
               height="40"
+              loading="lazy"
+              decoding="async"
             />
             <p class="footer-location">Cancun, Quintana Roo</p>
           </div>
@@ -504,6 +509,6 @@
       </svg>
     </a>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </body>
 </html>

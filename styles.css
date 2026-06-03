@@ -200,25 +200,22 @@ section {
 }
 
 .hero .eyebrow {
-  min-height: 2.6rem;
+  max-width: 28rem;
+  line-height: 1.45;
 }
 
 .hero h1 {
-  min-height: 6.2rem;
+  max-width: 14ch;
 }
 
 .hero-subtitle {
-  max-width: 22rem;
-  min-height: 5rem;
+  max-width: 26rem;
   color: var(--accent-3);
+  line-height: 1.35;
 }
 
-.hero-copy > p[data-i18n="hero_p1"] {
-  min-height: 9.5em;
-}
-
-.hero-copy > p[data-i18n="hero_p2"] {
-  min-height: 3.5em;
+.hero-copy > p {
+  max-width: 34rem;
 }
 
 .eyebrow {
@@ -259,12 +256,11 @@ p {
 }
 
 .hero-actions {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.85rem;
-  min-height: 3rem;
 }
 
 .button {
