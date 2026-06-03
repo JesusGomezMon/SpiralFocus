@@ -1,14 +1,22 @@
+const SITE = {
+  url: "https://spiralfocus.com",
+  name: "SpiralFocus",
+};
+
 const CONTACT = {
   whatsapp: "529981225937",
   whatsappDisplay: "+52 998 122 5937",
   instagram: "https://instagram.com/spiralfocus",
+  email: "jesusgomezmon@gmail.com",
 };
 
 const translations = {
   es: {
-    meta_title: "SpiralFocus | Fotografia cinematografica y emocional",
+    meta_title: "SpiralFocus | Fotografo en Cancun — fotografia cinematografica",
     meta_description:
-      "SpiralFocus: fotografia cinematografica y emocional en Cancun, Riviera Maya e Isla Mujeres.",
+      "Fotografo en Cancun especializado en fotografia cinematografica y emocional. Sesiones personales, marcas, gastronomia y contenido para redes en Riviera Maya e Isla Mujeres.",
+    meta_keywords:
+      "fotografo cancun, fotografia cancun, fotografia riviera maya, fotografia isla mujeres, sesion de fotos cancun, fotografia cinematografica, fotografo profesional cancun, fotografia de marca, fotografia gastronomica, contenido redes sociales cancun, SpiralFocus",
     nav_menu: "Menu",
     nav_sobre: "Sobre",
     nav_galeria: "Galeria",
@@ -89,9 +97,11 @@ const translations = {
     wa_form_message: "Mensaje",
     lightbox_close: "Cerrar",
     nav_home: "Inicio",
-    rates_meta_title: "SpiralFocus | Tarifarios",
+    rates_meta_title: "Tarifarios | Fotografia comercial en Cancun — SpiralFocus",
     rates_meta_description:
-      "Tarifarios SpiralFocus: fotografia de producto, gastronomia, redes sociales y video en Cancun y Riviera Maya.",
+      "Tarifarios de fotografia comercial en Cancun: producto, gastronomia, paquetes para redes sociales y video. Precios en MXN, entrega digital y condiciones claras.",
+    rates_meta_keywords:
+      "tarifarios fotografo cancun, fotografia de producto cancun, fotografia gastronomica cancun, paquetes instagram cancun, fotografia comercial riviera maya, precios fotografo cancun, video reels cancun, SpiralFocus",
     rates_title: "Tarifarios comerciales",
     rates_about_head: "SpiralFocus para negocios",
     rates_svc_head: "Que ofrecemos",
@@ -148,9 +158,11 @@ const translations = {
     cta_home: "Volver al portafolio",
   },
   en: {
-    meta_title: "SpiralFocus | Cinematic and emotional photography",
+    meta_title: "SpiralFocus | Photographer in Cancun — cinematic photography",
     meta_description:
-      "SpiralFocus: cinematic and emotional photography in Cancun, Riviera Maya and Isla Mujeres.",
+      "Cancun photographer for cinematic, emotional sessions. Personal portraits, brand content, food photography and social media in Riviera Maya and Isla Mujeres.",
+    meta_keywords:
+      "photographer cancun, cancun photography, riviera maya photographer, isla mujeres photography, cinematic photography, brand photography cancun, food photography cancun, social media content cancun, SpiralFocus",
     nav_menu: "Menu",
     nav_sobre: "About",
     nav_galeria: "Gallery",
@@ -231,9 +243,11 @@ const translations = {
     wa_form_message: "Message",
     lightbox_close: "Close",
     nav_home: "Home",
-    rates_meta_title: "SpiralFocus | Rates",
+    rates_meta_title: "Rates | Commercial photography in Cancun — SpiralFocus",
     rates_meta_description:
-      "SpiralFocus rates: product, food, social media and video photography in Cancun and Riviera Maya.",
+      "Commercial photography rates in Cancun: product, food, monthly social packages and video. MXN pricing with clear delivery terms.",
+    rates_meta_keywords:
+      "cancun photographer rates, product photography cancun, food photography cancun, social media packages cancun, commercial photography riviera maya, SpiralFocus pricing",
     rates_title: "Commercial rates",
     rates_about_head: "SpiralFocus for businesses",
     rates_svc_head: "What we offer",
@@ -318,13 +332,31 @@ function setLanguage(lang) {
   localStorage.setItem("sf-lang", lang);
   document.documentElement.lang = lang === "es" ? "es" : "en";
 
-  document.title = translations[lang][isRatesPage ? "rates_meta_title" : "meta_title"];
+  const titleKey = isRatesPage ? "rates_meta_title" : "meta_title";
+  const descKey = isRatesPage ? "rates_meta_description" : "meta_description";
+  const keywordsKey = isRatesPage ? "rates_meta_keywords" : "meta_keywords";
+
+  document.title = translations[lang][titleKey];
+
   const metaDescription = document.querySelector("#meta-description");
   if (metaDescription) {
-    metaDescription.setAttribute(
-      "content",
-      translations[lang][isRatesPage ? "rates_meta_description" : "meta_description"]
-    );
+    metaDescription.setAttribute("content", translations[lang][descKey]);
+  }
+
+  const metaKeywords = document.querySelector("#meta-keywords");
+  if (metaKeywords && translations[lang][keywordsKey]) {
+    metaKeywords.setAttribute("content", translations[lang][keywordsKey]);
+  }
+
+  const ogTitle = document.querySelector("#og-title");
+  const ogDescription = document.querySelector("#og-description");
+  const twitterTitle = document.querySelector("#twitter-title");
+  const twitterDescription = document.querySelector("#twitter-description");
+  if (ogTitle) ogTitle.setAttribute("content", translations[lang][titleKey]);
+  if (ogDescription) ogDescription.setAttribute("content", translations[lang][descKey]);
+  if (twitterTitle) twitterTitle.setAttribute("content", translations[lang][titleKey]);
+  if (twitterDescription) {
+    twitterDescription.setAttribute("content", translations[lang][descKey]);
   }
 
   document.querySelectorAll("[data-i18n]").forEach((element) => {
