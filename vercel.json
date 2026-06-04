@@ -4,8 +4,8 @@
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.spiralfocus.com" }],
-      "destination": "https://spiralfocus.com/:path*",
+      "has": [{ "type": "host", "value": "www.spiralfocus.mx" }],
+      "destination": "https://spiralfocus.mx/:path*",
       "permanent": true
     }
   ],

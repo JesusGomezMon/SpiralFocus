@@ -1,5 +1,5 @@
 const SITE = {
-  url: "https://spiralfocus.com",
+  url: "https://spiralfocus.mx",
   name: "SpiralFocus",
 };
 
