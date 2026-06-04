@@ -148,7 +148,7 @@ const translations = {
     social_unit: "MXN / mes · contrato 3 meses mín.",
     social_p1_name: "Arranque",
     social_p1_li1: "6 fotos para feed + 4 stories",
-    social_p1_li2: "1 sesión presencial (~2 h) en Cancún",
+    social_p1_li2: "1 sesión presencial (~2 h)",
     social_p1_li3: "Brief mensual por WhatsApp o videollamada",
     social_p1_li4: "Edición coherente con tu marca",
     social_p1_li5: "1 ronda de ajustes · entrega en 7–10 días",
@@ -171,7 +171,7 @@ const translations = {
     social_note:
       "Todos los paquetes incluyen briefing, dirección en set, postproducción manual y archivos optimizados para Instagram. No incluyen pauta ni manejo de cuentas; sí puedo asesorarte en qué publicar y cuándo.",
     video_lead:
-      "Precios pensados para ser accesibles en Cancún y coherentes entre paquetes: un reel suelto cuesta más por unidad; los packs te ahorran sin regalar el trabajo.",
+      "Precios accesibles y coherentes: un reel suelto desde $400; los packs te ahorran sin regalar el trabajo.",
     video_process:
       "Antes de grabar platicamos: qué quieres que sienta quien ve el video, si buscas venta, ambiente, confianza o nostalgia, y qué tipo de edición quieres (cortes rápidos, ritmo suave, texto en pantalla, voz en off, solo música). Grabo con intención y edito a mano — color, ritmo y música alineados a tu marca.",
     vid_p1_name: "Reel esencial",
@@ -191,7 +191,7 @@ const translations = {
     vid_p3_li3: "Brief único y plan de tomas",
     vid_p3_li4: "Entrega escalonada o en bloque",
     vid_p4_name: "Pack 6 reels",
-    vid_p4_unit: "MXN · ~$867 por reel",
+    vid_p4_unit: "MXN · ~$300 por reel",
     vid_p4_li1: "6 reels · ideal para menú, hotel o campaña",
     vid_p4_li2: "1–2 sesiones según complejidad",
     vid_p4_li3: "Coordinación de locación y props básicos",
@@ -351,7 +351,7 @@ const translations = {
     social_unit: "MXN / month · 3-month minimum",
     social_p1_name: "Launch",
     social_p1_li1: "6 feed photos + 4 stories",
-    social_p1_li2: "1 on-site session (~2 h) in Cancun",
+    social_p1_li2: "1 on-site session (~2 h)",
     social_p1_li3: "Monthly brief via WhatsApp or video call",
     social_p1_li4: "Editing aligned with your brand",
     social_p1_li5: "1 revision round · delivery in 7–10 days",
@@ -374,7 +374,7 @@ const translations = {
     social_note:
       "All packages include briefing, on-set direction, manual post-production and files optimized for Instagram. Ad spend and account management not included; I can advise on what and when to post.",
     video_lead:
-      "Pricing designed to be accessible in Cancun and consistent across packages: single reels cost more per unit; packs save you money without undervaluing the work.",
+      "Accessible, consistent pricing: single reels from $400 MXN; packs save you money without undervaluing the work.",
     video_process:
       "Before shooting we talk: what viewers should feel, whether you want sales, atmosphere, trust or nostalgia, and editing style (fast cuts, smooth pace, on-screen text, voice-over, music only). I shoot with intent and edit by hand — color, pace and music aligned to your brand.",
     vid_p1_name: "Essential reel",
@@ -394,7 +394,7 @@ const translations = {
     vid_p3_li3: "Single brief and shot plan",
     vid_p3_li4: "Staggered or batch delivery",
     vid_p4_name: "6-reel pack",
-    vid_p4_unit: "MXN · ~$867 per reel",
+    vid_p4_unit: "MXN · ~$300 per reel",
     vid_p4_li1: "6 reels · ideal for menu, hotel or campaign",
     vid_p4_li2: "1–2 sessions depending on complexity",
     vid_p4_li3: "Location coordination and basic props",
