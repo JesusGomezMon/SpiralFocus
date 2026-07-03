@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #11120f;
+  --surface: #191b17;
+  --text: #f4f1e8;
+  --muted: #b4b0a4;
+  --line: #2a2d27;
+  --accent: #b49a63;
+  --sand: #d8d0be;
+}
+
+html[data-theme="light"] {
+  --bg: #f2eee3;
+  --surface: #f8f5ee;
+  --text: #1f211c;
+  --muted: #5e6259;
+  --line: #ded7c7;
+  --accent: #9f8452;
+  --sand: #f5f0e2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at 90% 10%, #2c3225 0, transparent 40%), var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.sf-shell {
+  min-height: 100dvh;
+}
+
+.sf-section {
+  margin: 0 auto;
+  max-width: 82rem;
+  padding: 4rem 1rem;
+}
+
+.sf-card {
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  background: color-mix(in hsl, var(--surface), transparent 20%);
+}
+
+.sf-button {
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  padding: 0.7rem 1.1rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+.sf-button:hover {
+  transform: translateY(-1px);
+}
+
+.sf-button-solid {
+  border-color: color-mix(in hsl, var(--accent), #000 30%);
+  background: linear-gradient(130deg, var(--accent), #8b7450);
+  color: #11120f;
+  font-weight: 700;
+}
+
+.sf-button-ghost {
+  color: var(--text);
+}
+
+.sf-chip {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  padding: 0.4rem 0.75rem;
+  font-size: 0.75rem;
+}
