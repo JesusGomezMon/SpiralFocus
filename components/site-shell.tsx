@@ -1,28 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
-import { motion } from "framer-motion";
-
-type Lang = "es" | "en";
-
-const copy = {
-  es: { reserve: "Reservar experiencia", collections: "Ver colecciones", faq: "FAQ" },
-  en: { reserve: "Book experience", collections: "View collections", faq: "FAQ" },
-};
-
-export function useLang() {
-  const [lang, setLang] = useState<Lang>("es");
-  useEffect(() => {
-    const stored = localStorage.getItem("sf-lang");
-    if (stored === "en" || stored === "es") setLang(stored);
-  }, []);
-  useEffect(() => {
-    localStorage.setItem("sf-lang", lang);
-  }, [lang]);
-  return { lang, setLang };
-}
+import { waLink } from "@/lib/content";
 
 export function useTheme() {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
@@ -39,7 +20,6 @@ export function useTheme() {
 
 export function SiteHeader({ page }: { page: "home" | "sesiones" | "comercial" }) {
   const [scrolled, setScrolled] = useState(false);
-  const { lang, setLang } = useLang();
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
@@ -49,73 +29,76 @@ export function SiteHeader({ page }: { page: "home" | "sesiones" | "comercial" }
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const t = useMemo(() => copy[lang], [lang]);
+  const link = (href: string, label: string, active: boolean) => (
+    <Link className={active ? "text-[var(--text)]" : "text-[var(--muted)]"} href={href}>
+      {label}
+    </Link>
+  );
 
   return (
-    <motion.header
-      className={`sticky top-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "border-b border-[var(--line)] bg-[color-mix(in_hsl,var(--surface),transparent_25%)] backdrop-blur-xl"
-          : "bg-transparent"
+    <header
+      className={`sticky top-0 z-50 border-b transition-colors ${
+        scrolled ? "border-[var(--line)] bg-[color-mix(in_hsl,var(--bg),transparent_12%)] backdrop-blur-xl" : "border-transparent bg-transparent"
       }`}
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
     >
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 md:px-8">
-        <nav className="flex items-center gap-4 text-sm text-[var(--muted)] md:gap-8">
-          <Link className={page === "home" ? "text-[var(--text)]" : ""} href="/">
-            Home
-          </Link>
-          <Link className={page === "sesiones" ? "text-[var(--text)]" : ""} href="/sesiones">
-            Sesiones
-          </Link>
-          <Link className={page === "comercial" ? "text-[var(--text)]" : ""} href="/comercial">
-            Comercial
-          </Link>
+      <div className="sf-wrap flex items-center justify-between py-5">
+        <nav className="flex items-center gap-5 text-sm md:gap-8">
+          {link("/", "Inicio", page === "home")}
+          {link("/sesiones", "Sesiones", page === "sesiones")}
+          {link("/comercial", "Comercial", page === "comercial")}
         </nav>
 
-        <img alt="SpiralFocus" className="h-10 w-auto opacity-95" src="/img/logo con texto svg.svg" />
+        <Link className="sf-serif text-lg italic" href="/">
+          Spiral <span className="text-[var(--accent)]">Focus</span>
+        </Link>
 
         <div className="flex items-center gap-2">
-          <button className="sf-chip" onClick={() => setLang(lang === "es" ? "en" : "es")} type="button">
-            {lang.toUpperCase()}
-          </button>
           <button
             aria-label="Cambiar tema"
             className="sf-chip"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             type="button"
           >
-            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+            {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
           </button>
           <Link className="sf-button sf-button-solid hidden md:inline-flex" href="#reserva">
-            {t.reserve}
+            Reservar
           </Link>
         </div>
       </div>
-    </motion.header>
+    </header>
   );
 }
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-[var(--line)] px-4 py-16 md:px-8">
-      <div className="mx-auto flex max-w-7xl flex-col gap-8 md:flex-row md:items-end md:justify-between">
-        <div>
-          <img alt="SpiralFocus" className="mb-3 h-8 w-auto" src="/img/logo svg.svg" />
-          <p className="text-sm text-[var(--muted)]">Cancún · Riviera Maya · Latinoamérica</p>
-        </div>
-        <div className="flex flex-wrap items-center gap-6 text-sm text-[var(--muted)]">
+    <footer className="sf-dark border-t border-[var(--line)] py-16 text-center">
+      <div className="sf-wrap">
+        <p className="sf-serif mx-auto max-w-2xl text-2xl italic leading-snug md:text-3xl">
+          ¿Esto ayuda a que tu marca <span className="text-[var(--accent)]">crezca</span>, o solo se ve bonito?
+        </p>
+        <p className="mt-4 text-sm text-[var(--muted)]">Si la respuesta es la segunda, se elimina.</p>
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm text-[var(--muted)]">
           <a href="https://instagram.com/spiralfocus_" rel="noreferrer" target="_blank">
             Instagram
           </a>
-          <a href="https://wa.me/529981225937" rel="noreferrer" target="_blank">
+          <a href={waLink("Hola, quiero información sobre Spiral Focus.")} rel="noreferrer" target="_blank">
             WhatsApp
           </a>
-          <a href="mailto:jesusgomezmon@gmail.com">Correo</a>
+          <a href="mailto:jesusgomezmon@gmail.com">jesusgomezmon@gmail.com</a>
         </div>
+        <p className="mt-12 text-xs uppercase tracking-[0.14em] text-[var(--acero)]">
+          © 2026 Spiral Focus · Fotografía comercial y contenido digital · Cancún
+        </p>
       </div>
     </footer>
+  );
+}
+
+export function WhatsAppFab({ message = "Hola, quiero reservar una sesión con Spiral Focus." }: { message?: string }) {
+  return (
+    <a aria-label="WhatsApp" className="sf-fab" href={waLink(message)} rel="noreferrer" target="_blank">
+      WhatsApp
+    </a>
   );
 }

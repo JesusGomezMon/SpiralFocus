@@ -1,23 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #11120f;
-  --surface: #191b17;
-  --text: #f4f1e8;
-  --muted: #b4b0a4;
-  --line: #2a2d27;
-  --accent: #b49a63;
-  --sand: #d8d0be;
+  --niebla: #f2f4f5;
+  --piedra: #e1e6e9;
+  --acero: #a7b2ba;
+  --pizarra: #4c5a66;
+  --tinta: #161d24;
+  --noche: #0b131a;
+  --cobalto: #2f5d8a;
+  --gold: #b8963e;
+  --bg: var(--noche);
+  --surface: #121a22;
+  --text: var(--niebla);
+  --muted: #cbd8de;
+  --line: rgba(167, 178, 186, 0.28);
+  --accent: var(--gold);
 }
 
 html[data-theme="light"] {
-  --bg: #f2eee3;
-  --surface: #f8f5ee;
-  --text: #1f211c;
-  --muted: #5e6259;
-  --line: #ded7c7;
-  --accent: #9f8452;
-  --sand: #f5f0e2;
+  --bg: var(--niebla);
+  --surface: #fff;
+  --text: var(--tinta);
+  --muted: var(--pizarra);
+  --line: var(--piedra);
+  --accent: var(--cobalto);
 }
 
 * {
@@ -26,36 +32,74 @@ html[data-theme="light"] {
 
 body {
   margin: 0;
-  background: radial-gradient(circle at 90% 10%, #2c3225 0, transparent 40%), var(--bg);
+  background: var(--bg);
   color: var(--text);
   font-family: var(--font-sans), system-ui, sans-serif;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+.sf-serif {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 300;
+  letter-spacing: -0.01em;
 }
 
 .sf-shell {
   min-height: 100dvh;
 }
 
-.sf-section {
+.sf-wrap {
   margin: 0 auto;
-  max-width: 82rem;
-  padding: 4rem 1rem;
+  max-width: 68rem;
+  padding: 0 1.25rem;
+}
+
+.sf-section {
+  padding: 5rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.sf-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.sf-eyebrow::before {
+  content: "";
+  width: 2rem;
+  height: 1px;
+  background: var(--accent);
 }
 
 .sf-card {
   border: 1px solid var(--line);
-  border-radius: 1.25rem;
-  background: color-mix(in hsl, var(--surface), transparent 20%);
+  background: color-mix(in hsl, var(--surface), transparent 8%);
 }
 
 .sf-button {
-  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0;
   border: 1px solid var(--line);
-  padding: 0.7rem 1.1rem;
-  font-size: 0.82rem;
-  letter-spacing: 0.08em;
+  padding: 0.95rem 1.6rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   text-decoration: none;
-  transition: all 0.4s ease;
+  transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .sf-button:hover {
@@ -63,21 +107,56 @@ body {
 }
 
 .sf-button-solid {
-  border-color: color-mix(in hsl, var(--accent), #000 30%);
-  background: linear-gradient(130deg, var(--accent), #8b7450);
-  color: #11120f;
-  font-weight: 700;
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--noche);
+}
+
+html[data-theme="light"] .sf-button-solid {
+  color: var(--niebla);
 }
 
 .sf-button-ghost {
   color: var(--text);
+  background: transparent;
 }
 
 .sf-chip {
   border: 1px solid var(--line);
-  border-radius: 999px;
   background: transparent;
   color: var(--text);
-  padding: 0.4rem 0.75rem;
-  font-size: 0.75rem;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+
+.sf-chip-active {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.sf-dark {
+  background: var(--noche);
+  color: var(--niebla);
+}
+
+.sf-fab {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  background: #25d366;
+  color: #fff;
+  padding: 0.85rem 1.1rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
 }
