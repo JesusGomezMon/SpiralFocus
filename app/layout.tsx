@@ -1,20 +1,30 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-serif" });
+const display = Cormorant_Garamond({
+  subsets: ["latin"],
+  variable: "--font-display",
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
+});
+
+const body = Jost({
+  subsets: ["latin"],
+  variable: "--font-body",
+  weight: ["300", "400", "500"],
+});
 
 export const metadata: Metadata = {
-  title: "Spiral Focus | Fotografía comercial y contenido digital · Cancún",
+  title: "Spiral Focus | El arte de enfocar lo irrepetible",
   description:
-    "Producción visual estratégica para marcas y negocios en Cancún y Riviera Maya. Fotografía de producto, gastronomía y contenido para redes que comunica y convierte.",
+    "Firma de fotografía cinematográfica en Cancún y Riviera Maya. Bodas, retratos y momentos de vida con mirada de autor y trato boutique.",
   metadataBase: new URL("https://spiralfocus.mx"),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html className={`${inter.variable} ${fraunces.variable}`} lang="es" suppressHydrationWarning>
+    <html className={`${display.variable} ${body.variable}`} lang="es" suppressHydrationWarning>
       <body>{children}</body>
     </html>
   );

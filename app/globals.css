@@ -1,29 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --niebla: #f2f4f5;
-  --piedra: #e1e6e9;
-  --acero: #a7b2ba;
-  --pizarra: #4c5a66;
-  --tinta: #161d24;
-  --noche: #0b131a;
-  --cobalto: #2f5d8a;
-  --gold: #b8963e;
-  --bg: var(--noche);
-  --surface: #121a22;
-  --text: var(--niebla);
-  --muted: #cbd8de;
-  --line: rgba(167, 178, 186, 0.28);
-  --accent: var(--gold);
+  --negro: #1a1613;
+  --crema: #f4eee4;
+  --terracota: #d9713a;
+  --violeta: #4b2e70;
+  --dorado: #b08d57;
+  --arena: #d3b49f;
+  --gris: #6b6055;
+  --bg: var(--crema);
+  --surface: #faf6f0;
+  --text: var(--negro);
+  --muted: var(--gris);
+  --line: var(--dorado);
+  --accent: var(--terracota);
 }
 
-html[data-theme="light"] {
-  --bg: var(--niebla);
-  --surface: #fff;
-  --text: var(--tinta);
-  --muted: var(--pizarra);
-  --line: var(--piedra);
-  --accent: var(--cobalto);
+.sf-section-dark {
+  --muted: var(--arena);
+  background: var(--negro);
+  color: var(--crema);
 }
 
 * {
@@ -34,7 +30,8 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-weight: 400;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
@@ -42,10 +39,11 @@ body {
 h1,
 h2,
 h3,
-.sf-serif {
-  font-family: var(--font-serif), Georgia, serif;
-  font-weight: 300;
+.sf-display {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
   letter-spacing: -0.01em;
+  line-height: 1.1;
 }
 
 .sf-shell {
@@ -54,91 +52,138 @@ h3,
 
 .sf-wrap {
   margin: 0 auto;
-  max-width: 68rem;
-  padding: 0 1.25rem;
+  max-width: 72rem;
+  padding: 0 clamp(1.25rem, 4vw, 2.5rem);
 }
 
 .sf-section {
-  padding: 5rem 0;
-  border-top: 1px solid var(--line);
+  padding: clamp(4rem, 10vw, 7rem) 0;
+}
+
+.sf-rule-dorado {
+  width: 3rem;
+  height: 1px;
+  background: var(--dorado);
+}
+
+.sf-hero-image {
+  object-position: center center;
+}
+
+/* Galería masonry: cada foto conserva su orientación natural (las horizontales quedan horizontales). */
+.sf-masonry {
+  column-count: 1;
+  column-gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .sf-masonry {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sf-masonry {
+    column-count: 3;
+  }
+}
+
+.sf-masonry-item {
+  break-inside: avoid;
+  margin-bottom: 0.5rem;
+}
+
+.sf-gallery-photo {
+  width: 100%;
+  line-height: 0;
+}
+
+.sf-gallery-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.sf-gallery-quote {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+}
+
+.sf-section-dark .sf-logo-lockup {
+  color: var(--crema);
 }
 
 .sf-eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.875rem;
   font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.22em;
+  font-weight: 600;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--terracota);
 }
 
 .sf-eyebrow::before {
   content: "";
+  display: inline-block;
   width: 2rem;
   height: 1px;
-  background: var(--accent);
+  margin-right: 0.875rem;
+  vertical-align: middle;
+  background: var(--terracota);
 }
 
-.sf-card {
-  border: 1px solid var(--line);
-  background: color-mix(in hsl, var(--surface), transparent 8%);
+.sf-section-dark .sf-eyebrow {
+  color: var(--terracota);
 }
 
-.sf-button {
+.sf-section-dark .sf-eyebrow::before {
+  background: var(--terracota);
+}
+
+.sf-label {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.sf-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  border-radius: 0;
-  border: 1px solid var(--line);
-  padding: 0.95rem 1.6rem;
-  font-size: 0.72rem;
+  padding: 1rem 1.75rem;
+  border: 1px solid var(--terracota);
+  background: var(--terracota);
+  color: var(--crema);
+  font-size: 0.68rem;
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   text-decoration: none;
-  transition: transform 0.3s ease, background 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
-.sf-button:hover {
-  transform: translateY(-1px);
+.sf-cta:hover {
+  opacity: 0.9;
 }
 
-.sf-button-solid {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: var(--noche);
-}
-
-html[data-theme="light"] .sf-button-solid {
-  color: var(--niebla);
-}
-
-.sf-button-ghost {
-  color: var(--text);
-  background: transparent;
-}
-
-.sf-chip {
-  border: 1px solid var(--line);
+.sf-cta-ghost {
   background: transparent;
   color: var(--text);
-  padding: 0.45rem 0.9rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  cursor: pointer;
+  border-color: var(--line);
 }
 
-.sf-chip-active {
-  border-color: var(--accent);
-  color: var(--accent);
+.sf-divider {
+  height: 1px;
+  background: var(--dorado);
 }
 
-.sf-dark {
-  background: var(--noche);
-  color: var(--niebla);
+.sf-quote {
+  font-family: var(--font-display), Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  line-height: 1.5;
 }
 
 .sf-fab {
@@ -146,17 +191,76 @@ html[data-theme="light"] .sf-button-solid {
   right: 1.25rem;
   bottom: 1.25rem;
   z-index: 60;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  border-radius: 999px;
-  background: #25d366;
-  color: #fff;
-  padding: 0.85rem 1.1rem;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  padding: 0.9rem 1.2rem;
+  background-color: #25d366 !important;
+  color: #ffffff !important;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   text-decoration: none;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+}
+
+.sf-gallery-accent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--dorado) 35%, var(--negro));
+  background: var(--negro);
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.sf-quote-accent {
+  font-size: clamp(1.35rem, 2.8vw, 1.9rem);
+  line-height: 1.45;
+}
+
+.sf-faq summary,
+.sf-faq p {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+.sf-faq summary {
+  color: var(--negro);
+}
+
+.sf-faq p {
+  color: var(--gris);
+}
+
+.sf-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.sf-logo-lockup {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.sf-logo-mark {
+  height: 3.25rem;
+  width: 3.25rem;
+  flex-shrink: 0;
+}
+
+.sf-logo-text {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 1.35rem;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.sf-logo-text em {
+  font-style: normal;
+  color: var(--violeta);
 }

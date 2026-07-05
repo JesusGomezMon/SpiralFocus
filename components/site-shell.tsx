@@ -2,69 +2,52 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Moon, Sun } from "lucide-react";
-import { waLink } from "@/lib/content";
+import { LogoLockup, LogoMark } from "@/components/logo";
+import { EMAIL, INSTAGRAM, tagline, waLink } from "@/lib/brand";
 
-export function useTheme() {
-  const [theme, setTheme] = useState<"light" | "dark">("dark");
-  useEffect(() => {
-    const stored = localStorage.getItem("sf-theme");
-    if (stored === "light" || stored === "dark") setTheme(stored);
-  }, []);
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme;
-    localStorage.setItem("sf-theme", theme);
-  }, [theme]);
-  return { theme, setTheme };
-}
+const nav = [
+  { href: "#galeria", label: "Trabajo" },
+  { href: "#proceso", label: "Proceso" },
+  { href: "#reserva", label: "Reservar" },
+];
 
-export function SiteHeader({ page }: { page: "home" | "sesiones" | "comercial" }) {
+export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
-  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const link = (href: string, label: string, active: boolean) => (
-    <Link className={active ? "text-[var(--text)]" : "text-[var(--muted)]"} href={href}>
-      {label}
-    </Link>
-  );
-
   return (
     <header
-      className={`sticky top-0 z-50 border-b transition-colors ${
-        scrolled ? "border-[var(--line)] bg-[color-mix(in_hsl,var(--bg),transparent_12%)] backdrop-blur-xl" : "border-transparent bg-transparent"
+      className={`sticky top-0 z-50 transition-colors ${
+        scrolled ? "border-b border-[var(--line)] bg-[color-mix(in_hsl,var(--bg),transparent_8%)] backdrop-blur-md" : ""
       }`}
     >
-      <div className="sf-wrap flex items-center justify-between py-5">
-        <nav className="flex items-center gap-5 text-sm md:gap-8">
-          {link("/", "Inicio", page === "home")}
-          {link("/sesiones", "Sesiones", page === "sesiones")}
-          {link("/comercial", "Comercial", page === "comercial")}
-        </nav>
-
-        <Link className="sf-serif text-lg italic" href="/">
-          Spiral <span className="text-[var(--accent)]">Focus</span>
+      <div className="sf-wrap flex items-center justify-between gap-4 py-4">
+        <Link className="sf-logo-lockup" href="/">
+          <LogoMark className="sf-logo-mark" priority />
+          <span className="sf-logo-text hidden sm:block">
+            Spiral <em>Focus</em>
+          </span>
         </Link>
-
-        <div className="flex items-center gap-2">
-          <button
-            aria-label="Cambiar tema"
-            className="sf-chip"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            type="button"
-          >
-            {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
-          </button>
-          <Link className="sf-button sf-button-solid hidden md:inline-flex" href="#reserva">
-            Reservar
-          </Link>
-        </div>
+        <nav className="hidden items-center gap-8 md:flex">
+          {nav.map((item) => (
+            <Link
+              className="sf-label text-[var(--muted)] transition-colors hover:text-[var(--terracota)]"
+              href={item.href}
+              key={item.href}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+        <Link className="sf-cta hidden md:inline-flex" href="#reserva">
+          Iniciar conversación
+        </Link>
       </div>
     </header>
   );
@@ -72,32 +55,38 @@ export function SiteHeader({ page }: { page: "home" | "sesiones" | "comercial" }
 
 export function SiteFooter() {
   return (
-    <footer className="sf-dark border-t border-[var(--line)] py-16 text-center">
-      <div className="sf-wrap">
-        <p className="sf-serif mx-auto max-w-2xl text-2xl italic leading-snug md:text-3xl">
-          ¿Esto ayuda a que tu marca <span className="text-[var(--accent)]">crezca</span>, o solo se ve bonito?
-        </p>
-        <p className="mt-4 text-sm text-[var(--muted)]">Si la respuesta es la segunda, se elimina.</p>
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm text-[var(--muted)]">
-          <a href="https://instagram.com/spiralfocus_" rel="noreferrer" target="_blank">
+    <footer className="sf-section-dark border-t border-[#3a342f]">
+      <div className="sf-wrap text-center">
+        <LogoLockup centered className="mx-auto mb-6 text-[var(--crema)]" />
+        <p className="sf-quote mx-auto max-w-xl text-[var(--crema)]">{tagline}</p>
+        <p className="sf-label mt-8 text-[var(--arena)]">Cancún · Riviera Maya · México</p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-[var(--arena)]">
+          <a className="hover:text-[var(--terracota)]" href={`https://instagram.com/${INSTAGRAM}`} rel="noreferrer" target="_blank">
             Instagram
           </a>
-          <a href={waLink("Hola, quiero información sobre Spiral Focus.")} rel="noreferrer" target="_blank">
+          <a className="hover:text-[var(--terracota)]" href={waLink("Hola, quiero iniciar una conversación sobre una sesión con Spiral Focus.")} rel="noreferrer" target="_blank">
             WhatsApp
           </a>
-          <a href="mailto:jesusgomezmon@gmail.com">jesusgomezmon@gmail.com</a>
+          <a className="hover:text-[var(--terracota)]" href={`mailto:${EMAIL}`}>
+            {EMAIL}
+          </a>
         </div>
-        <p className="mt-12 text-xs uppercase tracking-[0.14em] text-[var(--acero)]">
-          © 2026 Spiral Focus · Fotografía comercial y contenido digital · Cancún
-        </p>
+        <p className="sf-label mt-12 text-[var(--arena)]">© 2026 Spiral Focus</p>
       </div>
     </footer>
   );
 }
 
-export function WhatsAppFab({ message = "Hola, quiero reservar una sesión con Spiral Focus." }: { message?: string }) {
+export function WhatsAppFab() {
   return (
-    <a aria-label="WhatsApp" className="sf-fab" href={waLink(message)} rel="noreferrer" target="_blank">
+    <a
+      aria-label="WhatsApp"
+      className="sf-fab"
+      href={waLink("Hola, quiero reservar una experiencia con Spiral Focus.")}
+      rel="noreferrer"
+      style={{ backgroundColor: "#25D366", color: "#ffffff" }}
+      target="_blank"
+    >
       WhatsApp
     </a>
   );
