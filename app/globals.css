@@ -191,15 +191,26 @@ h3,
   right: 1.25rem;
   bottom: 1.25rem;
   z-index: 60;
-  padding: 0.9rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 9999px;
   background-color: #25d366 !important;
   color: #ffffff !important;
-  font-size: 0.65rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
   text-decoration: none;
   box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+  transition: transform 0.2s ease;
+}
+
+.sf-fab:hover {
+  transform: scale(1.05);
+}
+
+.sf-fab svg {
+  width: 1.75rem;
+  height: 1.75rem;
 }
 
 .sf-gallery-accent {
